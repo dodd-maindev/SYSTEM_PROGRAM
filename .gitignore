@@ -1,0 +1,26 @@
+# Build artifacts
+build/
+matbench
+matbench_test
+
+# Benchmark results (regenerable)
+results/*.csv
+results/*.png
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Object files
+*.o
+*.d
+
+# Requirement
+*.txt
