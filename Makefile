@@ -18,7 +18,7 @@ SRC_DIR  = src
 TEST_DIR = tests
 BUILD    = build
 
-# Source files (excluding main.c for test target)
+# Source files (excluding main.c for test/demo targets)
 SRCS     = $(SRC_DIR)/matrix.c \
            $(SRC_DIR)/multiply_naive.c \
            $(SRC_DIR)/multiply_ikj.c \
@@ -31,16 +31,20 @@ SRCS     = $(SRC_DIR)/matrix.c \
            $(SRC_DIR)/csv_writer.c \
            $(SRC_DIR)/runner.c
 
-OBJS     = $(patsubst $(SRC_DIR)/%.c,$(BUILD)/%.o,$(SRCS))
-MAIN_OBJ = $(BUILD)/main.o
-TEST_OBJS = $(BUILD)/test_main.o $(BUILD)/test_basic.o $(BUILD)/test_methods.o
+OBJS      = $(patsubst $(SRC_DIR)/%.c,$(BUILD)/%.o,$(SRCS))
+MAIN_OBJ  = $(BUILD)/main.o
+TEST_OBJS = $(BUILD)/test_main.o $(BUILD)/test_basic.o \
+            $(BUILD)/test_methods.o
+DEMO_OBJS = $(BUILD)/test_demo_main.o $(BUILD)/test_demo.o \
+            $(BUILD)/test_demo_methods.o
 
 TARGET   = matbench
 TEST_BIN = matbench_test
+DEMO_BIN = matbench_demo
 
 # === Targets =================================================================
 
-.PHONY: all clean test benchmark
+.PHONY: all clean test demo benchmark
 
 all: $(TARGET)
 
@@ -50,8 +54,14 @@ $(TARGET): $(OBJS) $(MAIN_OBJ)
 $(TEST_BIN): $(OBJS) $(TEST_OBJS)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
+$(DEMO_BIN): $(OBJS) $(DEMO_OBJS)
+	$(CC) -o $@ $^ $(LDFLAGS)
+
 test: $(TEST_BIN)
 	./$(TEST_BIN)
+
+demo: $(DEMO_BIN)
+	./$(DEMO_BIN)
 
 benchmark: $(TARGET)
 	mkdir -p results
@@ -71,4 +81,4 @@ $(BUILD):
 	mkdir -p $(BUILD)
 
 clean:
-	rm -rf $(BUILD) $(TARGET) $(TEST_BIN)
+	rm -rf $(BUILD) $(TARGET) $(TEST_BIN) $(DEMO_BIN)

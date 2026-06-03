@@ -38,5 +38,7 @@ static inline double matrix_get(const Matrix *m, int r, int c) {
 static inline void matrix_set(Matrix *m, int r, int c, double v) {
     m->data[r * m->cols + c] = v;
 }
+/** Print matrix contents to stdout with a label. */
+void matrix_print(const Matrix *mat, const char *label);
 
 #endif /* MATRIX_H */

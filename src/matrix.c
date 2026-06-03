@@ -4,6 +4,7 @@
  */
 #include "matrix.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -46,3 +47,15 @@ void matrix_fill_zero(Matrix *mat) {
     size_t bytes = (size_t)mat->rows * mat->cols * sizeof(double);
     memset(mat->data, 0, bytes);
 }
+
+void matrix_print(const Matrix *mat, const char *label) {
+    printf("  %s (%dx%d):\n", label, mat->rows, mat->cols);
+    for (int i = 0; i < mat->rows; i++) {
+        printf("    [");
+        for (int j = 0; j < mat->cols; j++) {
+            printf("%8.2f", mat->data[i * mat->cols + j]);
+        }
+        printf(" ]\n");
+    }
+}
+

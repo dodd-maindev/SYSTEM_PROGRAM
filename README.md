@@ -1,15 +1,3 @@
-# MatBench — Parallel Matrix Multiplication Benchmark
-
-## Project Title
-**C1: Parallel Matrix Operations** — System Programming Final Project (VNU-IS)
-
-## Group Members
-
-| Name            | Student ID | Email               |
-|-----------------|-----------|---------------------|
-| Vu Quang Hung   | [ID]      | [email]             |
-| Dao Duc Do      | [ID]      | [email]             |
-
 ## Overview
 
 A CLI benchmark suite that implements **6 variants** of dense NxN matrix
